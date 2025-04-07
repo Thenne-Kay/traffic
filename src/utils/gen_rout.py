@@ -260,8 +260,8 @@ def create_sumo_trips_file(edge_to_coords, trips_file):
 def get_safe_speed():
     url = 'https://api.jsonbin.io/v3/b/67f2fc7f8561e97a50f9ee30/latest'
     headers = {
-        'X-Master-Key': '$2a$10$FUmjWNXvVi5NsJryVyOB2ekB4KaHRFFDIA6IZ6RLnbzXl.0//.bZS',
-        'X-Access-Key': '$2a$10$6QoGhTy8DP32vFVHX9dm9uTy5ANfpdeBqmne6/tdmQ2l/.ju08chK'
+        "X-Master-Key": os.getenv("X-Master-Key"),
+        "X-Access-Key": os.getenv("X-Access-Key"),
     }
 
     response = requests.get(url, headers=headers)
@@ -303,6 +303,5 @@ def get_safe_speed():
             base_speed -= 5
 
         return max(30, int(base_speed))
-    
 
     return calculate_safe_speed(precip_mm, wind_kph, visibility_km, cloud_cover, humidity)

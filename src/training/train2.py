@@ -19,6 +19,9 @@ from src.utils.gen_rout import dir, logg ,config_file, net_file, route_file
 
 from azureml.core.run import Run
 
+#callback functions for the training
+callbacks = [EpisodeCallback(), RewardPrinter()]
+
 
 REFERENCE_STATES = {
     # Position: (state_pattern1, state_pattern2, ...)
@@ -34,7 +37,6 @@ REFERENCE_STATES = {
     7: ("rrrrrrrGGrrrrrrrGG", "rrrrrrrrGGrrrrrrrrGG", "rrrryyyyrrr"),  # Position 7
 }
 
-callbacks = [EpisodeCallback(), RewardPrinter()]
 
 
 def get_normalized_phase_states():
@@ -115,6 +117,7 @@ def plot_stored_waiting_times(labels_to_compare, figsize=(12, 6)):
     plt.show()
 
 
+# sumo enviroment configs setup
 x2 = SumoTrafficEnv(
     config_file,
     net_file,
@@ -123,6 +126,7 @@ x2 = SumoTrafficEnv(
     40001,
 )
 env = x2
+
 policy_kwargs = dict(
     features_extractor_class=CustomFeatureExtractor,
     features_extractor_kwargs=dict(features_dim=128),

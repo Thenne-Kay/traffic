@@ -15,7 +15,7 @@ from src.utils.gen_rout import net_file, trip_file1, route_file1
 
 
 
-
+# generate new route files
 class EpisodeCallback(BaseCallback):
     def __init__(self, verbose=0):
         super().__init__(verbose)
@@ -49,7 +49,7 @@ class EpisodeCallback(BaseCallback):
 
         return True
 
-
+# calculate rewards
 class RewardPrinter(BaseCallback):
     def __init__(self):
         super().__init__()
