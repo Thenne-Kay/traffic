@@ -1,0 +1,37 @@
+```
+└── 📁traffic
+    └── 📁.azureml
+        └── config.json
+    └── 📁azureml
+        └── compute.yaml
+        └── conda_dependencies.yml
+        └── Dockerfile
+    └── 📁outputs
+    └── 📁scripts
+        └── run_training.bat
+        └── setup_win.bat
+    └── 📁src
+        └── __init__.py
+        └── 📁deployment
+            └── .amlignore
+            └── deploy_model.py
+            └── monitor.py
+            └── see_train.py
+            └── submit_training.py
+            └── upload_configs.py
+        └── 📁environments
+            └── __init__.py
+            └── sumo_env.py
+        └── 📁sumo_configs
+            └── osm.poly.xml.gz
+        └── 📁training
+            └── __init__.py
+            └── train2.py
+        └── 📁utils
+            └── __init__.py
+            └── gen_rout.py
+            └── make_csv.py
+            └── utils.py
+    └── .env
+    └── .gitignore
+```
