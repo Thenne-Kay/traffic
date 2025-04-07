@@ -5,9 +5,15 @@ from azureml.core.compute_target import ComputeTargetException
 
 
 import sys
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+path_to_src=os.getenv("path_to_src")
 
 
-sys.path.append("C:\\Users\\ThinkPad x390\\Desktop\\vs\\traffic\\src")
+sys.path.append(path_to_src)
 
 
 def submit_job():

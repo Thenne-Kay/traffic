@@ -1,5 +1,5 @@
 {
-    "subscription_id": "74ab5018-1276-46eb-8112-ea17dea80462",
-    "resource_group": "traffic-prototype",
-    "workspace_name": "traffic-ml"
+    "subscription_id": "your-azure-subscription_id",
+    "resource_group": "your-resourcegroup",
+    "workspace_name": "azureml_workspace"
 }

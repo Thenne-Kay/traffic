@@ -38,8 +38,8 @@ route_file1 = os.path.join(writable_config_dir, "your_routes3.rou.xml")
 output_file = writable_config_dir
 
 
-# Replace with your Microsoft Azure Maps API Key
-key = "2oQ2IayBB4tfBjtZkef5RMHXGCjfnxjkC3KLTPth7cS3lAxODnz1JQQJ99BDAC5RqLJcK7viAAAgAZMP2MLC"
+# Replace with your Microsoft Azure Maps API Ke
+
 
 # Define output path for .rou.xml file
 
@@ -148,7 +148,7 @@ def get_weather(lat, lon):
 
     url = "https://atlas.microsoft.com/weather/currentConditions/json"
     params = {
-        "subscription-key": key,
+        "subscription-key": os.getenv("map_key"),
         "api-version": "1.0",
         "unit": "metric",  # or "imperial"
         "details": "true",  # Optional: Include air quality, pollution, etc.
