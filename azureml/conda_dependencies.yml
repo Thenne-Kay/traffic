@@ -1,0 +1,16 @@
+name: sumo-rl2
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - httpx
+    - openpyxl
+    - azureml-core
+    - stable-baselines3
+    - gymnasium
+    - traci
+    - sumolib
+    - tensorboard
+    - pathlib2
