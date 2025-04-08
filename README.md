@@ -57,17 +57,22 @@ After training, the model generates detailed logs of every vehicle’s position 
         └── compute.yaml
         └── conda_dependencies.yml
         └── Dockerfile
-    └── 📁outputs
+    └── 📁saved_models
+        └── 165000.zip
+        └── 📁images
+            └── model15.png
+            └── trained-loading.png
+            └── untrained-loading.png
     └── 📁scripts
         └── run_training.bat
         └── setup_win.bat
     └── 📁src
         └── __init__.py
         └── 📁deployment
-            └── .amlignore
             └── deploy_model.py
             └── monitor.py
             └── see_train.py
+            └── submit_loading.py
             └── submit_training.py
             └── upload_configs.py
         └── 📁environments
@@ -75,14 +80,21 @@ After training, the model generates detailed logs of every vehicle’s position 
             └── sumo_env.py
         └── 📁sumo_configs
             └── osm.poly.xml.gz
+            └── osm4.net.xml
+            └── osm4.rou.xml
+            └── osm4.sumocfg
         └── 📁training
             └── __init__.py
+            └── loading.py
             └── train2.py
         └── 📁utils
             └── __init__.py
             └── gen_rout.py
             └── make_csv.py
             └── utils.py
+    └── .amlignore
     └── .env
     └── .gitignore
+    └── README.md
+    └── setup.md
 ```
