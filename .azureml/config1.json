@@ -1,0 +1,5 @@
+{
+    "subscription_id": "your-azure-subscription_id",
+    "resource_group": "your-resourcegroup",
+    "workspace_name": "azureml_workspace"
+}

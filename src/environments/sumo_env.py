@@ -42,7 +42,9 @@ class SumoTrafficEnv(gym.Env):
         self.csvclass=csvCallback()
         self.episode=0
         self.lat, self.lon = next(iter(edge_to_coords.values()))
-        
+        os.makedirs(dir, exist_ok=True)
+
+
         self.max_speed=get_safe_speed()
 
         # Initialize spaces
@@ -135,7 +137,16 @@ class SumoTrafficEnv(gym.Env):
             # Get new state
             obs = self._get_observation()
             reward = self._calculate_reward()
-            self.run.log("rewards",reward)
+
+            model_count = len(
+                [
+                    f
+                    for f in os.listdir(dir)
+                    if f.endswith(".zip")  # Filter for model files
+                ]
+            )
+
+            self.run.log(f"rewards{model_count}",reward)
             # Check if any vehicles have ever been in the simulation
             if num_vehicles > 0:
                 self.vehicles_started = True
@@ -231,8 +242,7 @@ class SumoTrafficEnv(gym.Env):
         #     current_type_speed = traci.vehicletype.getMaxSpeed(type_id)
         #     new_type_speed = current_type_speed * reduction_factor
         #     traci.vehicletype.setMaxSpeed(type_id, new_type_speed)
-        
-        
+
     def set_max_speed2(self,max_speed=80):
         # return
 
@@ -275,7 +285,7 @@ class SumoTrafficEnv(gym.Env):
             vehicle_ids = traci.vehicle.getIDList()
             if not vehicle_ids:
                 print("No vehicles in simulation - neutral reward")
-                return 100
+                return 0
 
             # Calculate components
             waiting_times = [traci.vehicle.getWaitingTime(v) for v in vehicle_ids]
@@ -287,7 +297,7 @@ class SumoTrafficEnv(gym.Env):
 
             # Weighted reward components
             reward = (avg_speed * 0.1) - (total_waiting * 0.01)
-            return float(reward)
+            return float(reward/1047)
 
         except Exception as e:
             print(f"Reward calculation error: {e}")

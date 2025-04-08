@@ -12,7 +12,7 @@ load_dotenv()
 
 path_to_src=os.getenv("path_to_src")
 
-
+print(path_to_src)
 sys.path.append(path_to_src)
 
 
