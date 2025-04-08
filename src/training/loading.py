@@ -17,24 +17,7 @@ from datetime import datetime
 
 
 model_path = "saved_models/165000.zip"
-waiting_time_storage={}
 run=Run.get_context()
-
-
-def store_waiting_times(env, label):
-    """
-    Stores waiting times from an environment with a given label
-
-    Parameters:
-    - env: Environment instance (with waiting_time_history)
-    - label: Unique identifier for this dataset
-    """
-
-    run.log_table(
-         label,
-         np.array(env.waiting_time_history)
-    )
-  
 
 
 x = SumoTrafficEnv(config_file, net_file, route_file, False, 40001)
@@ -48,6 +31,7 @@ for step in range(4000):
 
     # Take a step
     obs, reward, terminated, truncated, info = x.step(action)
+    run.log("untrained",x.waiting_time_history[-1])
     # obs, reward, terminated, truncated, info = y.step(action2)
     if (len(x.traffic_lights) > 0) and terminated == False:
         tl_status = x.get_traffic_light_status()
@@ -63,11 +47,13 @@ for step in range(4000):
         if terminated or truncated:
             print("\nEpisode ended early!")
             # Close the environment
-            x.close()
             # y.close()
             print("\nSimulation complete.")
+
             break
-store_waiting_times(x, "untrained")
+
+x.close()
+# store_waiting_times(x, "untrained")
 
 x2 = SumoTrafficEnv(config_file, net_file, route_file, False, 40001)
 obs, info = x2.reset()
@@ -80,6 +66,8 @@ for step in range(4000):
     action, _states = model.predict(obs, deterministic=True)
     # Take a step
     obs, reward, terminated, truncated, info = x2.step(action)
+    run.log("trained",x2.waiting_time_history[-1])
+
     # obs, reward, terminated, truncated, info = y.step(action2)
     if (len(x2.traffic_lights) > 0) and terminated == False:
         tl_status = x2.get_traffic_light_status()
@@ -95,8 +83,9 @@ for step in range(4000):
         if terminated or truncated:
             print("\nEpisode ended early!")
             # Close the environment
-            x2.close()
             # y.close()
             print("\nSimulation complete.")
             break
-store_waiting_times(x2, "trained")
+           
+x2.close()
+# store_waiting_times(x2, "trained")
