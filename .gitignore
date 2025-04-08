@@ -1,3 +1,4 @@
 /.env
 /scripts
 /.azureml/config.json
+/saved_models/319000.zip
