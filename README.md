@@ -1,4 +1,4 @@
-# Traffic Control with Reinforcement Learning (RL) and Weather Data Integration
+# Traffic Control with Reinforcement Learning (RL) and Real Time Data Integration
 
 This project aims to develop an AI model for controlling traffic flow in a smart city using **Reinforcement Learning (RL)**, **SUMO (Simulation of Urban Mobility)**, and real-time data integration. The model is trained on **Azure Machine Learning (AML)**, using data from a **Microsoft Fabric Lakehouse** and APIs for real-time **weather** and **traffic flow** data.
 
